@@ -16,12 +16,20 @@ public class Main {
 //        ElectronicProduct produto = new ElectronicProduct("Notebook", 3500);
 //        productService.add(produto);
 //        testAddProduct(productService);
-        testFindAllProducts(productService);
+//        testFindAllProducts(productService);
 //        testCheckById(productService);
 //        testFindById(productService);
 //        testRemoveById(productService);
 //        testAddTag(productService);
 //        testFindAllElectronics(productService);
+        testIfDifferentProductsEvaluatesFalse();
+    }
+
+    private static void testIfDifferentProductsEvaluatesFalse() {
+        Product product = new FoodProduct("Beterraba", 12.50);
+        Product product1 = new FoodProduct("Beterraba", 12.50);
+
+        System.out.println(product.equals(product1));
     }
 
     // Métodos estáticos para os testes.

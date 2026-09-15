@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 /**
  * Implementação da interface ProductCalatog.
@@ -34,7 +35,7 @@ public class ProductService implements ProductCatalog {
     }
 
     public Map<Product, String> getCategorizedProducts() {
-        return categorizedProducts;
+        return new HashMap<>(categorizedProducts);
     }
 
     @Override
@@ -51,7 +52,6 @@ public class ProductService implements ProductCatalog {
      * @return se a operação de exclusão teve sucesso com um boolean
      */
     @Override
-    // TODO replace console mesages by logs.
     public boolean removeById(UUID id) {
         if (productMap.remove(id) != null) {
             System.out.println("Produto removido!");
@@ -66,7 +66,6 @@ public class ProductService implements ProductCatalog {
     public Optional<Product> findById(UUID id) {
         return productMap.values()
                 .stream().filter(p -> p.getId().equals(id)).findAny();
-
     }
 
     @Override
@@ -113,6 +112,6 @@ public class ProductService implements ProductCatalog {
         if (product instanceof ElectronicProduct) categorizedProducts.put(product, tagElectronic);
         if (product instanceof FoodProduct) categorizedProducts.put(product, tagFood);
 
-        return categorizedProducts;
+        return new HashMap<>(categorizedProducts);
     }
 }
