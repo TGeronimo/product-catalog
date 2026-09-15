@@ -26,5 +26,5 @@ public interface ProductCatalog {
 
     List<Product> findAllElectronics();
 
-    <E extends Product> void addTag(E product);
+    void addTag(Product product);
 }

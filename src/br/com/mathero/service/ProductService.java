@@ -26,6 +26,10 @@ public class ProductService implements ProductCatalog {
      * dos produtos. Então, posso armazenar um Product como chave
      * e o valor será a tag para o tipo de produto.
      */
+    // todo Avaliar se a responsabilidade por categorizar produtos deve ficar com Product
+            // Deixar assim pode criar inconsistência de estado, pois um produto
+            // pode ter sido removido em productMap e continuar existindo
+            // em categorizedProducts.
     private Map<Product, String> categorizedProducts = new HashMap<>();
 
     public Set<Product> getProductSet() {
@@ -36,6 +40,7 @@ public class ProductService implements ProductCatalog {
         return new HashMap<>(categorizedProducts);
     }
 
+    // todo Rever o contrato de add para entender o retorno, pois put() retorna null caso seja um novo produto
     @Override
     public Product add(Product product) {
         return productMap.put(product.getId(), product);
@@ -102,7 +107,7 @@ public class ProductService implements ProductCatalog {
      * adição de mais de um produto por categoria.
      */
     @Override
-    public <E extends Product> void addTag(E product) {
+    public void addTag(Product product) {
         var tagElectronic = "produtos eletrônicos";
         var tagFood = "produtos alimentícios";
 
