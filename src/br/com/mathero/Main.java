@@ -19,7 +19,8 @@ public class Main {
 //        testCheckById();
 //        testFindById();
 //        testFindByName();
-        testRemoveById(productService);
+//        testRemoveById(productService);
+        testAddTag(productService);
     }
 
     public static void testAddProduct(ProductService productService) {
@@ -99,7 +100,24 @@ public class Main {
         System.out.println(productService.getProductSet());
         productService.removeById(product.getId());
         System.out.println(productService.getProductSet());
+    }
 
+    public static void testAddTag(ProductService ps) {
+        Product food1 = new FoodProduct("Aspargos", 29.50);
+        Product food2 = new FoodProduct("Batata-doce", 12.00);
+        Product elec1 = new ElectronicProduct("Smartphone Moto Edge 50 Neo", 2700.00);
+        Product elec2 = new ElectronicProduct("Notebook HP Probook 440 G11", 5200.00);
+        ps.add(food1);
+        ps.add(food2);
+        ps.add(elec1);
+        ps.add(elec2);
+        System.out.println(ps.getProductSet());
+
+        ps.addTag(food1);
+        ps.addTag(food2);
+        ps.addTag(elec1);
+        ps.addTag(elec2);
+        System.out.println(ps.getCategorizedProducts());
 
     }
 }

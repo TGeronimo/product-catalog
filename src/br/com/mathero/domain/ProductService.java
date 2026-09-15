@@ -6,15 +6,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.UUID;
 
 public class ProductService implements ProductCatalog {
 
     private Set<Product> productSet = new HashSet<>();
-    private Map<String, Product> categorizedProducts = new HashMap<>();
+    private Map<Product, String> categorizedProducts = new HashMap<>();
 
     public Set<Product> getProductSet() {
         return productSet;
+    }
+
+    public Map<Product, String> getCategorizedProducts() {
+        return categorizedProducts;
     }
 
     @Override
@@ -61,8 +66,14 @@ public class ProductService implements ProductCatalog {
         return List.of();
     }
 
-    @Override //TODO
-    public Map<String, Product> addTag(String category, Product product) {
-        return Map.of();
+    @Override
+    public Map<Product, String> addTag(Product product) {
+        var tagElectronic = "produtos eletrônicos";
+        var tagFood = "produtos alimentícios";
+
+        if (product instanceof ElectronicProduct) categorizedProducts.put(product, tagElectronic);
+        if (product instanceof FoodProduct) categorizedProducts.put(product, tagFood);
+
+        return categorizedProducts;
     }
 }
