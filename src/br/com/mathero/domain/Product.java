@@ -4,17 +4,13 @@ import java.util.UUID;
 
 public class Product {
     private final UUID id;
-    private String name;
+    private final String name;
     private double price;
 
     public Product(String name, double price) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.price = price;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setPrice(double price) {
@@ -33,14 +29,19 @@ public class Product {
         return price;
     }
 
+    /**
+     * Como optei por utilizar um UUID aleatório como "ID" do produto
+     * o hashcode depende apenas do nome do produto.
+     */
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return name.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        return (obj instanceof Product product) && (this.id == product.id);
+        return (obj instanceof Product product)
+                && (this.name.equals(product.name));
     }
 
     @Override

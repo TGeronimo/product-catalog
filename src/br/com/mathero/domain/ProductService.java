@@ -19,8 +19,7 @@ public class ProductService implements ProductCatalog {
 
     @Override
     public Optional<Product> add(Product product) {
-        if (!findByName(product)) {
-            productSet.add(product);
+        if (productSet.add(product)) {
             System.out.println("Produto cadastrado com sucesso!");
             return Optional.of(product);
         } else {
