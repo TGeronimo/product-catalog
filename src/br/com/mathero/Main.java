@@ -14,6 +14,7 @@ public class Main {
         productService.add(eleProd1);
 
         testAddProduct();
+        testFindAllProducts();
 
 
     }
@@ -22,5 +23,19 @@ public class Main {
         ProductService productService = new ProductService();
         Product product = new FoodProduct("Beterraba", 12.50);
         System.out.println(productService.add(product));
+    }
+
+    public static void testFindAllProducts() {
+        ProductService productService = new ProductService();
+        Product product = new FoodProduct("Beterraba", 12.50);
+        Product product2 = new FoodProduct("Aspargos", 27.00);
+        Product product3 = new ElectronicProduct("Smartphone", 2700.00);
+
+        productService.add(product);
+        productService.add(product2);
+        productService.add(product3);
+
+        System.out.println(productService.findAll());
+
     }
 }

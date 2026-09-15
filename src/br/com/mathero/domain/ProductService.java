@@ -8,8 +8,8 @@ import java.util.Set;
 
 public class ProductService implements ProductCatalog {
 
-    Set<Product> productSet = new HashSet<>();
-    Map<String, Product> categorizedProducts = new HashMap<>();
+    private Set<Product> productSet = new HashSet<>();
+    private Map<String, Product> categorizedProducts = new HashMap<>();
 
     @Override
     public Product add(Product product) {
@@ -29,7 +29,7 @@ public class ProductService implements ProductCatalog {
 
     @Override
     public List<Product> findAll() {
-        return List.of();
+        return productSet.stream().toList();
     }
 
     @Override
