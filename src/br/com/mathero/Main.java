@@ -44,7 +44,7 @@ public class Main {
         Product product = new FoodProduct("Beterraba", 12.50);
         productService.add(product);
         productService.add(product);
-        System.out.println(productService.getProductSet());
+        System.out.println(productService.getProductCatalog());
 
     }
 
@@ -104,9 +104,9 @@ public class Main {
     public static void testRemoveById(ProductService productService) {
         Product product = new FoodProduct("Beterraba", 12.50);
         productService.add(product);
-        System.out.println(productService.getProductSet());
+        System.out.println(productService.getProductCatalog());
         productService.removeById(product.getId());
-        System.out.println(productService.getProductSet());
+        System.out.println(productService.getProductCatalog());
     }
 
     /**
@@ -124,7 +124,7 @@ public class Main {
         ps.add(food2);
         ps.add(elec1);
         ps.add(elec2);
-        System.out.println(ps.getProductSet());
+        System.out.println(ps.getProductCatalog());
 
         ps.addTag(food1);
         ps.addTag(food2);

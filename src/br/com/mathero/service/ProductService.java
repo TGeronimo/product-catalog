@@ -5,10 +5,8 @@ import br.com.mathero.domain.FoodProduct;
 import br.com.mathero.domain.Product;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -20,7 +18,7 @@ public class ProductService implements ProductCatalog {
      * O armazenamento principal dos produtos criados será
      * num Map.
      */
-    private Map<UUID, Product> productMap = new HashMap<>();
+    private Map<UUID, Product> productCatalog = new HashMap<>();
     /**
      * Decidi criar um Map para o armazenamento categorizado
      * dos produtos. Então, posso armazenar um Product como chave
@@ -32,8 +30,8 @@ public class ProductService implements ProductCatalog {
             // em categorizedProducts.
     private Map<Product, String> categorizedProducts = new HashMap<>();
 
-    public Set<Product> getProductSet() {
-        return new HashSet<>(productMap.values());
+    public Map<UUID, Product> getProductCatalog() {
+        return new HashMap<>(productCatalog);
     }
 
     public Map<Product, String> getCategorizedProducts() {
@@ -43,7 +41,7 @@ public class ProductService implements ProductCatalog {
     // todo Rever o contrato de add para entender o retorno, pois put() retorna null caso seja um novo produto
     @Override
     public Product add(Product product) {
-        return productMap.put(product.getId(), product);
+        return productCatalog.put(product.getId(), product);
     }
 
     /**
@@ -55,7 +53,7 @@ public class ProductService implements ProductCatalog {
      */
     @Override
     public boolean removeById(UUID id) {
-        if (productMap.remove(id) != null) {
+        if (productCatalog.remove(id) != null) {
             System.out.println("Produto removido!");
             return true;
         }
@@ -66,17 +64,17 @@ public class ProductService implements ProductCatalog {
 
     @Override
     public Product findById(UUID id) {
-        return productMap.get(id);
+        return productCatalog.get(id);
     }
 
     @Override
     public boolean checkById(UUID id) {
-        return productMap.containsKey(id);
+        return productCatalog.containsKey(id);
     }
 
     @Override
     public List<Product> findAll() {
-        return productMap.values().stream().toList();
+        return productCatalog.values().stream().toList();
     }
 
     /**
