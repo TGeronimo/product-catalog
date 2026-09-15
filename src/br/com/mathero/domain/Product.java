@@ -4,13 +4,17 @@ import java.util.UUID;
 
 public class Product {
     private final UUID id;
-    private final String name;
+    private String name;
     private double price;
 
     public Product(String name, double price) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.price = price;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPrice(double price) {
@@ -35,13 +39,13 @@ public class Product {
      */
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return id.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
         return (obj instanceof Product product)
-                && (this.name.equals(product.name));
+                && (this.id.equals(product.id));
     }
 
     @Override

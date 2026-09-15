@@ -88,7 +88,7 @@ public class ProductService implements ProductCatalog {
      */
     @Override
     public Optional<Product> findById(UUID id) {
-        return productSet.stream().filter(p -> p.getId() == id).findAny();
+        return productSet.stream().filter(p -> p.getId().equals(id)).findAny();
 
     }
 
@@ -99,7 +99,7 @@ public class ProductService implements ProductCatalog {
     @Override
     public boolean checkById(UUID id) {
         return productSet.stream()
-                .anyMatch(p -> p.getId() == id);
+                .anyMatch(p -> p.getId().equals(id));
     }
 
     /**
@@ -127,13 +127,12 @@ public class ProductService implements ProductCatalog {
                 .filter(v -> v.getValue().equals("produtos eletrônicos"))
                 .map(Map.Entry::getKey)
                 .toList();
-
     }
 
     /**
      * Permite associar uma categoria textual a um produto.
      *
-     * @param produto a ser categorizado.
+     * @param product a ser categorizado.
      * @return um mapa tendo o produto como chave e a categoria como valor.
      * Essa decisão foi tomada, pois usar a tag como chave impediria a
      * adição de mais de um produto por categoria.
