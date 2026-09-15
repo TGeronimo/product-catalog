@@ -33,10 +33,6 @@ public class Product {
         return price;
     }
 
-    /**
-     * Como optei por utilizar um UUID aleatório como "ID" do produto
-     * o hashcode depende apenas do nome do produto.
-     */
     @Override
     public int hashCode() {
         return id.hashCode();

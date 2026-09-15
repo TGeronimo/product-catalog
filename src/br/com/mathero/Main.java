@@ -13,15 +13,14 @@ public class Main {
         ProductService productService = new ProductService();
 
         // Conjunto de testes.
-        ElectronicProduct produto = new ElectronicProduct("Notebook", 3500);
-        productService.add(produto);
-        testAddProduct(productService);
-        testFindAllProducts(productService);
-        testCheckById(productService);
-        testFindById(productService);
-        testFindByName(productService);
-        testRemoveById(productService);
-        testAddTag(productService);
+//        ElectronicProduct produto = new ElectronicProduct("Notebook", 3500);
+//        productService.add(produto);
+//        testAddProduct(productService);
+//        testFindAllProducts(productService);
+//        testCheckById(productService);
+//        testFindById(productService);
+//        testRemoveById(productService);
+//        testAddTag(productService);
         testFindAllElectronics(productService);
     }
 
@@ -41,7 +40,7 @@ public class Main {
 
         productService.add(product);
         productService.add(duplicatedProduct);
-        System.out.println(productService.getProductSet());
+        System.out.println(productService.getProductMap());
 
     }
 
@@ -94,26 +93,6 @@ public class Main {
     }
 
     /**
-     * Verifica se o findByName consegue recuperar pelo nome
-     * um produto já cadastrado.
-     *
-     */
-    public static void testFindByName(ProductService productService) {
-        Product product = new FoodProduct("Beterraba", 12.50);
-        Product product2 = new FoodProduct("Aspargos", 27.00);
-        Product product3 = new ElectronicProduct("Smartphone", 2700.00);
-
-        productService.add(product);
-        productService.add(product2);
-        productService.add(product3);
-
-        System.out.println(productService.findByName(product));
-        System.out.println(productService.findByName(product2));
-        System.out.println(productService.findByName(product3));
-        System.out.println(productService.getProductSet());
-    }
-
-    /**
      * Verifica se removeById consegue apagar um produto
      * do conjunto usando sua id.
      *
@@ -121,9 +100,9 @@ public class Main {
     public static void testRemoveById(ProductService productService) {
         Product product = new FoodProduct("Beterraba", 12.50);
         productService.add(product);
-        System.out.println(productService.getProductSet());
+        System.out.println(productService.getProductMap());
         productService.removeById(product.getId());
-        System.out.println(productService.getProductSet());
+        System.out.println(productService.getProductMap());
     }
 
     /**
@@ -141,7 +120,7 @@ public class Main {
         ps.add(food2);
         ps.add(elec1);
         ps.add(elec2);
-        System.out.println(ps.getProductSet());
+        System.out.println(ps.getProductMap());
 
         ps.addTag(food1);
         ps.addTag(food2);

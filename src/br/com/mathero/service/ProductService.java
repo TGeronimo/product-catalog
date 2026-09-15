@@ -21,7 +21,7 @@ public class ProductService implements ProductCatalog {
      * O armazenamento principal dos produtos criados será
      * num Set. Escolhi Set porque não permite duplicatas.
      */
-    private Set<Product> productSet = new HashSet<>();
+    private Map<UUID, Product> productMap = new HashMap<>();
     /**
      * Decidi criar um Map para o armazenamento categorizado
      * dos produtos. Então, posso armazenar um Product como chave
@@ -29,8 +29,8 @@ public class ProductService implements ProductCatalog {
      */
     private Map<Product, String> categorizedProducts = new HashMap<>();
 
-    public Set<Product> getProductSet() {
-        return productSet;
+    public Set<Product> getProductMap() {
+        return new HashSet<>(productMap.values());
     }
 
     public Map<Product, String> getCategorizedProducts() {
@@ -51,7 +51,9 @@ public class ProductService implements ProductCatalog {
      */
     @Override
     public Optional<Product> add(Product product) {
-        if (productSet.add(product)) {
+// TODO replace console mesages by logs.
+        if (checkById(product.getId())) {
+            productMap.put(product.getId(), product);
             System.out.println("Produto cadastrado com sucesso!");
             return Optional.of(product);
         } else {
@@ -68,18 +70,15 @@ public class ProductService implements ProductCatalog {
      * @return se a operação de exclusão teve sucesso com um boolean
      */
     @Override
+    // TODO replace console mesages by logs.
     public boolean removeById(UUID id) {
-        boolean result =  productSet.removeIf(p -> p.getId().equals(id));
-        System.out.println("Produto removido!");
-        return result;
-    }
+        if (productMap.remove(id) != null) {
+            System.out.println("Produto removido!");
+            return true;
+        }
 
-    /**
-     * Não soube fazer o filtro sem usar stream().
-     */
-    public boolean findByName(Product product) {
-        return productSet.stream()
-                .anyMatch(p -> p.getName().equals(product.getName()));
+        System.out.println("Produto não encontrado.");
+        return false;
     }
 
     /**
@@ -88,7 +87,7 @@ public class ProductService implements ProductCatalog {
      */
     @Override
     public Optional<Product> findById(UUID id) {
-        return productSet.stream().filter(p -> p.getId().equals(id)).findAny();
+        return productMap.stream().filter(p -> p.getId().equals(id)).findAny();
 
     }
 
@@ -98,8 +97,7 @@ public class ProductService implements ProductCatalog {
      */
     @Override
     public boolean checkById(UUID id) {
-        return productSet.stream()
-                .anyMatch(p -> p.getId().equals(id));
+        return productMap.containsKey(id);
     }
 
     /**
@@ -108,7 +106,7 @@ public class ProductService implements ProductCatalog {
      */
     @Override
     public Set<Product> findAll() {
-        return productSet;
+        return productMap;
     }
 
     /**
