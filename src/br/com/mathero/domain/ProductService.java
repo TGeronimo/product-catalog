@@ -14,9 +14,11 @@ public class ProductService implements ProductCatalog {
     private Map<String, Product> categorizedProducts = new HashMap<>();
 
     @Override
-    public Product add(Product product) {
-        productSet.add(product);
-        return product;
+    public Optional<Product> add(Product product) {
+        if (checkById(product.getId())) {
+            productSet.add(product);
+            return Optional.of(product);
+        } else return Optional.empty();
     }
 
     @Override

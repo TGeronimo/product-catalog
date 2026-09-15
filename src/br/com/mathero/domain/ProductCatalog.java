@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface ProductCatalog {
 
-    Product add(Product product);
+    Optional<Product> add(Product product);
 
     Product removeById(int id);
 
