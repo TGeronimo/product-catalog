@@ -93,7 +93,8 @@ public class ProductService implements ProductCatalog {
     }
 
     /**
-     * Permite associar uma categoria textual a um produto.
+     * Permite associar uma categoria textual a um produto, conforme
+     * requerido pelo exercício.
      *
      * @param product a ser categorizado.
      * @return um mapa tendo o produto como chave e a categoria como valor.
@@ -101,13 +102,11 @@ public class ProductService implements ProductCatalog {
      * adição de mais de um produto por categoria.
      */
     @Override
-    public Map<Product, String> addTag(Product product) {
+    public <E extends Product> void addTag(E product) {
         var tagElectronic = "produtos eletrônicos";
         var tagFood = "produtos alimentícios";
 
         if (product instanceof ElectronicProduct) categorizedProducts.put(product, tagElectronic);
         if (product instanceof FoodProduct) categorizedProducts.put(product, tagFood);
-
-        return new HashMap<>(categorizedProducts);
     }
 }
