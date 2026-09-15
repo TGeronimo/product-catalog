@@ -16,12 +16,12 @@ public class Main {
 //        ElectronicProduct produto = new ElectronicProduct("Notebook", 3500);
 //        productService.add(produto);
 //        testAddProduct(productService);
-//        testFindAllProducts(productService);
+        testFindAllProducts(productService);
 //        testCheckById(productService);
 //        testFindById(productService);
 //        testRemoveById(productService);
 //        testAddTag(productService);
-        testFindAllElectronics(productService);
+//        testFindAllElectronics(productService);
     }
 
     // Métodos estáticos para os testes.
@@ -36,10 +36,7 @@ public class Main {
      */
     public static void testAddProduct(ProductService productService) {
         Product product = new FoodProduct("Beterraba", 12.50);
-        Product duplicatedProduct = new FoodProduct("Beterraba", 12.50);
-
         productService.add(product);
-        productService.add(duplicatedProduct);
         System.out.println(productService.getProductMap());
 
     }

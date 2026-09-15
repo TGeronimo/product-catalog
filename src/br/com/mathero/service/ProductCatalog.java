@@ -14,7 +14,7 @@ import java.util.UUID;
  */
 public interface ProductCatalog {
 
-    Optional<Product> add(Product product);
+    Product add(Product product);
 
     boolean removeById(UUID id);
 
@@ -22,7 +22,7 @@ public interface ProductCatalog {
 
     boolean checkById(UUID id);
 
-    Set<Product> findAll();
+    List<Product> findAll();
 
     List<Product> findAllElectronics();
 

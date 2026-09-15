@@ -19,7 +19,7 @@ public class ProductService implements ProductCatalog {
 
     /**
      * O armazenamento principal dos produtos criados será
-     * num Set. Escolhi Set porque não permite duplicatas.
+     * num Map.
      */
     private Map<UUID, Product> productMap = new HashMap<>();
     /**
@@ -37,29 +37,10 @@ public class ProductService implements ProductCatalog {
         return categorizedProducts;
     }
 
-    /**
-     * Utilizei o add() do Set como condicional para inserção
-     * do produto, pois se o mesmo já estiver na coleção não
-     * será inserido e retornará um boolean que sinaliza
-     * o status. Fiz isso somente para poder retornar uma
-     * mensagem para o cliente.
-     *
-     * @param product passa o produto a ser inserido no Set.
-     * @return decidi por um Optional para poder retornar um
-     * elemento vazio para sinalizar que o produto não foi
-     * cadastrado, ou retornar o produto inserido.
-     */
     @Override
-    public Optional<Product> add(Product product) {
-// TODO replace console mesages by logs.
-        if (checkById(product.getId())) {
-            productMap.put(product.getId(), product);
-            System.out.println("Produto cadastrado com sucesso!");
-            return Optional.of(product);
-        } else {
-            System.out.println("ERRO: Produto já cadastrado.");
-            return Optional.empty();
-        }
+    public Product add(Product product) {
+        return productMap.putIfAbsent(product.getId(), product);
+
     }
 
     /**
@@ -81,32 +62,21 @@ public class ProductService implements ProductCatalog {
         return false;
     }
 
-    /**
-     * Não soube fazer o filtro sem usar stream().
-     *
-     */
     @Override
     public Optional<Product> findById(UUID id) {
-        return productMap.stream().filter(p -> p.getId().equals(id)).findAny();
+        return productMap.values()
+                .stream().filter(p -> p.getId().equals(id)).findAny();
 
     }
 
-    /**
-     * Não soube fazer o filtro sem usar stream().
-     *
-     */
     @Override
     public boolean checkById(UUID id) {
         return productMap.containsKey(id);
     }
 
-    /**
-     *
-     * @return o conjunto de produtos atual.
-     */
     @Override
-    public Set<Product> findAll() {
-        return productMap;
+    public List<Product> findAll() {
+        return productMap.values().stream().toList();
     }
 
     /**
