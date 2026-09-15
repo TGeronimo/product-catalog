@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.UUID;
 
 public class ProductService implements ProductCatalog {
@@ -61,9 +60,13 @@ public class ProductService implements ProductCatalog {
         return productSet;
     }
 
-    @Override // TODO
-    public List<ElectronicProduct> findAllElectronics() {
-        return List.of();
+    @Override
+    public List<Product> findAllElectronics() {
+        return categorizedProducts.entrySet().stream()
+                .filter(v -> v.getValue().equals("produtos eletrônicos"))
+                .map(Map.Entry::getKey)
+                .toList();
+
     }
 
     @Override

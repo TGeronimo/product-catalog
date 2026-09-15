@@ -18,7 +18,7 @@ public interface ProductCatalog {
 
     Set<Product> findAll();
 
-    List<ElectronicProduct> findAllElectronics();
+    List<Product> findAllElectronics();
 
     Map<Product, String> addTag(Product product);
 }
