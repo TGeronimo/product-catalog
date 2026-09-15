@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -24,13 +25,15 @@ public class ProductService implements ProductCatalog {
     }
 
     @Override
-    public Product findById(String id) {
-        return new FoodProduct("asdf", 1); //TODO
+    public Optional<Product> findById(UUID id) {
+        return productSet.stream().filter((p) -> p.getId() == id).findAny();
+
     }
 
     @Override
     public boolean checkById(UUID id) {
-        return productSet.stream().anyMatch((p) -> p.getId() == id);
+        return productSet.stream()
+                .anyMatch((p) -> p.getId() == id);
     }
 
     @Override
