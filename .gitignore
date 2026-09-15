@@ -1,30 +1,95 @@
-### IntelliJ IDEA ###
+# ==========================
+# IntelliJ IDEA
+# ==========================
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# IntelliJ cache
 out/
-!**/src/main/**/out/
-!**/src/test/**/out/
-.kotlin
 
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+# ==========================
+# Java
+# ==========================
+*.class
+*.jar
+*.war
+*.ear
+*.nar
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+# Logs
+*.log
 
-### VS Code ###
+# Arquivos temporários
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# ==========================
+# Maven
+# ==========================
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+
+# Maven Wrapper (opcional)
+# Se quiser versionar o wrapper, remova estas linhas
+.mvn/wrapper/maven-wrapper.jar
+
+# ==========================
+# Gradle
+# ==========================
+.gradle/
+build/
+
+# Gradle Wrapper (opcional)
+# Normalmente recomenda-se versionar estes arquivos
+# gradlew
+# gradlew.bat
+# gradle/wrapper/gradle-wrapper.jar
+# gradle/wrapper/gradle-wrapper.properties
+
+# ==========================
+# VS Code
+# ==========================
 .vscode/
 
-### Mac OS ###
+# ==========================
+# Eclipse
+# ==========================
+.project
+.classpath
+.settings/
+
+# ==========================
+# Sistema Operacional
+# ==========================
 .DS_Store
+Thumbs.db
+Desktop.ini
+
+# ==========================
+# Arquivos de ambiente
+# ==========================
+.env
+.env.*
+*.local
+
+# ==========================
+# Testes e Cobertura
+# ==========================
+coverage/
+jacoco.exec
+/site/jacoco/
+
+# ==========================
+# Arquivos gerados
+# ==========================
+hs_err_pid*
+replay_pid*

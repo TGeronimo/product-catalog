@@ -12,8 +12,8 @@ O catálogo terá as seguintes funcionalidades:
 - Obter todos os produtos cadastrados.
 - Obter somente os produtos eletrônicos.
 - Associar uma categoria textual a um produto, por exemplo:
-- "notebook" → produtos eletrônicos
-- "food"     → produtos alimentícios
+  - "notebook" → produtos eletrônicos
+  - "food"     → produtos alimentícios
 - Impedir que o mesmo produto seja cadastrado duas vezes.
 
 Restrições:
