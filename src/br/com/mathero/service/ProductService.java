@@ -8,10 +8,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
-import java.util.logging.Logger;
 
 /**
  * Implementação da interface ProductCalatog.
@@ -30,7 +28,7 @@ public class ProductService implements ProductCatalog {
      */
     private Map<Product, String> categorizedProducts = new HashMap<>();
 
-    public Set<Product> getProductMap() {
+    public Set<Product> getProductSet() {
         return new HashSet<>(productMap.values());
     }
 
@@ -40,8 +38,7 @@ public class ProductService implements ProductCatalog {
 
     @Override
     public Product add(Product product) {
-        return productMap.putIfAbsent(product.getId(), product);
-
+        return productMap.put(product.getId(), product);
     }
 
     /**
@@ -63,9 +60,8 @@ public class ProductService implements ProductCatalog {
     }
 
     @Override
-    public Optional<Product> findById(UUID id) {
-        return productMap.values()
-                .stream().filter(p -> p.getId().equals(id)).findAny();
+    public Product findById(UUID id) {
+        return productMap.get(id);
     }
 
     @Override

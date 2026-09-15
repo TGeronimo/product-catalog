@@ -18,7 +18,7 @@ public interface ProductCatalog {
 
     boolean removeById(UUID id);
 
-    Optional<Product> findById(UUID id);
+    Product findById(UUID id);
 
     boolean checkById(UUID id);
 

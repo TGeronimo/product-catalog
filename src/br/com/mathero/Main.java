@@ -13,16 +13,14 @@ public class Main {
         ProductService productService = new ProductService();
 
         // Conjunto de testes.
-//        ElectronicProduct produto = new ElectronicProduct("Notebook", 3500);
-//        productService.add(produto);
-//        testAddProduct(productService);
+        testAddProduct(productService);
 //        testFindAllProducts(productService);
 //        testCheckById(productService);
 //        testFindById(productService);
 //        testRemoveById(productService);
 //        testAddTag(productService);
 //        testFindAllElectronics(productService);
-        testIfDifferentProductsEvaluatesFalse();
+//        testIfDifferentProductsEvaluatesFalse();
     }
 
     private static void testIfDifferentProductsEvaluatesFalse() {
@@ -45,7 +43,8 @@ public class Main {
     public static void testAddProduct(ProductService productService) {
         Product product = new FoodProduct("Beterraba", 12.50);
         productService.add(product);
-        System.out.println(productService.getProductMap());
+        productService.add(product);
+        System.out.println(productService.getProductSet());
 
     }
 
@@ -105,9 +104,9 @@ public class Main {
     public static void testRemoveById(ProductService productService) {
         Product product = new FoodProduct("Beterraba", 12.50);
         productService.add(product);
-        System.out.println(productService.getProductMap());
+        System.out.println(productService.getProductSet());
         productService.removeById(product.getId());
-        System.out.println(productService.getProductMap());
+        System.out.println(productService.getProductSet());
     }
 
     /**
@@ -125,7 +124,7 @@ public class Main {
         ps.add(food2);
         ps.add(elec1);
         ps.add(elec2);
-        System.out.println(ps.getProductMap());
+        System.out.println(ps.getProductSet());
 
         ps.addTag(food1);
         ps.addTag(food2);
