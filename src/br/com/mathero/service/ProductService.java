@@ -53,7 +53,10 @@ public class ProductService implements ProductCatalog {
      */
     @Override
     public boolean removeById(UUID id) {
-        if (productCatalog.remove(id) != null) {
+        Product productToRemove = productCatalog.remove(id);
+
+        if (productToRemove != null) {
+            categorizedProducts.remove(productToRemove);
             System.out.println("Produto removido!");
             return true;
         }
