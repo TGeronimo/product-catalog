@@ -43,5 +43,13 @@ public class Product {
         return (obj instanceof Product product) && (this.id == product.id);
     }
 
+    @Override
+    public String toString() {
+        return "{ " +
+                    "id: " + id + "," +
+                    " name: " + name + "," +
+                    " price: " + price +
+                " }";
+    }
 
 }
