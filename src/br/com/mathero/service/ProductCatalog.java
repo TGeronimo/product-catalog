@@ -3,9 +3,6 @@ package br.com.mathero.service;
 import br.com.mathero.domain.Product;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -14,7 +11,7 @@ import java.util.UUID;
  */
 public interface ProductCatalog {
 
-    Product add(Product product);
+    Product addProduct(Product product);
 
     boolean removeById(UUID id);
 

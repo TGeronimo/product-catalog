@@ -13,7 +13,7 @@ public class Main {
         ProductService productService = new ProductService();
 
         // Conjunto de testes.
-        testAddProduct(productService);
+        testIfAProductWasAdded(productService);
 //        testFindAllProducts(productService);
 //        testCheckById(productService);
 //        testFindById(productService);
@@ -40,12 +40,10 @@ public class Main {
      * @param productService injeta a dependência para manter
      *                       o acesso ao mesmo conjunto de produtos.
      */
-    public static void testAddProduct(ProductService productService) {
+    public static void testIfAProductWasAdded(ProductService productService) {
         Product product = new FoodProduct("Beterraba", 12.50);
-        productService.add(product);
-        productService.add(product);
-        System.out.println(productService.getProductCatalog());
-
+        Product addedProduct = productService.addProduct(product);
+        System.out.println(addedProduct.equals(product));
     }
 
     /**
@@ -57,9 +55,9 @@ public class Main {
         Product product2 = new FoodProduct("Aspargos", 27.00);
         Product product3 = new ElectronicProduct("Smartphone", 2700.00);
 
-        productService.add(product);
-        productService.add(product2);
-        productService.add(product3);
+        productService.addProduct(product);
+        productService.addProduct(product2);
+        productService.addProduct(product3);
 
         System.out.println(productService.findAll());
 
@@ -75,9 +73,9 @@ public class Main {
         Product product2 = new FoodProduct("Aspargos", 27.00);
         Product product3 = new ElectronicProduct("Smartphone", 2700.00);
 
-        productService.add(product);
-        productService.add(product2);
-        productService.add(product3);
+        productService.addProduct(product);
+        productService.addProduct(product2);
+        productService.addProduct(product3);
 
         System.out.println(productService.checkById(product3.getId()));
         System.out.println(productService.checkById(UUID.randomUUID()));
@@ -90,7 +88,7 @@ public class Main {
     public static void testFindById(ProductService productService) {
         Product product = new FoodProduct("Beterraba", 12.50);
 
-        productService.add(product);
+        productService.addProduct(product);
 
         System.out.println(productService.findById(product.getId()));
         System.out.println(productService.findById(UUID.randomUUID()));
@@ -103,7 +101,7 @@ public class Main {
      */
     public static void testRemoveById(ProductService productService) {
         Product product = new FoodProduct("Beterraba", 12.50);
-        productService.add(product);
+        productService.addProduct(product);
         System.out.println(productService.getProductCatalog());
         productService.removeById(product.getId());
         System.out.println(productService.getProductCatalog());
@@ -120,10 +118,10 @@ public class Main {
         Product food2 = new FoodProduct("Batata-doce", 12.00);
         Product elec1 = new ElectronicProduct("Smartphone Moto Edge 50 Neo", 2700.00);
         Product elec2 = new ElectronicProduct("Notebook HP Probook 440 G11", 5200.00);
-        ps.add(food1);
-        ps.add(food2);
-        ps.add(elec1);
-        ps.add(elec2);
+        ps.addProduct(food1);
+        ps.addProduct(food2);
+        ps.addProduct(elec1);
+        ps.addProduct(elec2);
         System.out.println(ps.getProductCatalog());
 
         ps.addTag(food1);
@@ -145,10 +143,10 @@ public class Main {
         Product food2 = new FoodProduct("Batata-doce", 12.00);
         Product elec1 = new ElectronicProduct("Smartphone Moto Edge 50 Neo", 2700.00);
         Product elec2 = new ElectronicProduct("Notebook HP Probook 440 G11", 5200.00);
-        ps.add(food1);
-        ps.add(food2);
-        ps.add(elec1);
-        ps.add(elec2);
+        ps.addProduct(food1);
+        ps.addProduct(food2);
+        ps.addProduct(elec1);
+        ps.addProduct(elec2);
 
         ps.addTag(food1);
         ps.addTag(food2);

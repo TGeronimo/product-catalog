@@ -38,10 +38,11 @@ public class ProductService implements ProductCatalog {
         return new HashMap<>(categorizedProducts);
     }
 
-    // todo Rever o contrato de add para entender o retorno, pois put() retorna null caso seja um novo produto
     @Override
-    public Product add(Product product) {
-        return productCatalog.put(product.getId(), product);
+    public Product addProduct(Product product) {
+        if (productCatalog.put(product.getId(), product) == null)
+            return productCatalog.get(product.getId());
+        return null;
     }
 
     /**
