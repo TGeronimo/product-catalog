@@ -2,6 +2,8 @@ package br.com.mathero.domain;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 public interface ProductCatalog {
 
@@ -9,9 +11,11 @@ public interface ProductCatalog {
 
     Product removeById(int id);
 
-    boolean findById(int id);
+    Product findById(String id);
 
-    List<Product> findAll();
+    boolean checkById(UUID id);
+
+    Set<Product> findAll();
 
     List<ElectronicProduct> findAllElectronics();
 

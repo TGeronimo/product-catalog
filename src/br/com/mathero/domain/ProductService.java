@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 public class ProductService implements ProductCatalog {
 
@@ -23,13 +24,18 @@ public class ProductService implements ProductCatalog {
     }
 
     @Override
-    public boolean findById(int id) {
-        return false;
+    public Product findById(String id) {
+        return new FoodProduct("asdf", 1); //TODO
     }
 
     @Override
-    public List<Product> findAll() {
-        return productSet.stream().toList();
+    public boolean checkById(UUID id) {
+        return productSet.stream().anyMatch((p) -> p.getId() == id);
+    }
+
+    @Override
+    public Set<Product> findAll() {
+        return productSet;
     }
 
     @Override
