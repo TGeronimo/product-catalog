@@ -13,12 +13,13 @@ public class Main {
         ElectronicProduct eleProd1 = new ElectronicProduct("Notebook", 3500);
         ProductService productService = new ProductService();
 
-        productService.add(eleProd1);
-        testAddProduct(productService);
+//        productService.add(eleProd1);
+//        testAddProduct(productService);
 //        testFindAllProducts();
 //        testCheckById();
 //        testFindById();
 //        testFindByName();
+        testRemoveById(productService);
     }
 
     public static void testAddProduct(ProductService productService) {
@@ -90,5 +91,15 @@ public class Main {
         System.out.println(productService.findByName(product2));
         System.out.println(productService.findByName(product3));
         System.out.println(productService.getProductSet());
+    }
+
+    public static void testRemoveById(ProductService productService) {
+        Product product = new FoodProduct("Beterraba", 12.50);
+        productService.add(product);
+        System.out.println(productService.getProductSet());
+        productService.removeById(product.getId());
+        System.out.println(productService.getProductSet());
+
+
     }
 }

@@ -10,7 +10,7 @@ public interface ProductCatalog {
 
     Optional<Product> add(Product product);
 
-    Product removeById(int id);
+    boolean removeById(UUID id);
 
     Optional<Product> findById(UUID id);
 

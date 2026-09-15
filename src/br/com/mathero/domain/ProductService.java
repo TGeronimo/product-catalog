@@ -28,9 +28,11 @@ public class ProductService implements ProductCatalog {
         }
     }
 
-    @Override // TODO
-    public Product removeById(int id) {
-        return null;
+    @Override
+    public boolean removeById(UUID id) {
+        boolean result =  productSet.removeIf(p -> p.getId().equals(id));
+        System.out.println("Produto removido!");
+        return result;
     }
 
     public boolean findByName(Product product) {
